@@ -80,20 +80,28 @@ output['posts'] = [] #declare a new array of posts within the output JSON docume
 for post in blogPosts:
     print("Processing post at: " + post)
     postHtml = BeautifulSoup(simple_get(post), 'html.parser')
-    Author = postHtml.select('span[property="author"]')
+    Authors = postHtml.select('span[property="author"]')
+    Title = postHtml.select('h1[property="name headline"]')
     DatePublished = postHtml.select('time[property="datePublished"]')
-    Categories = postHtml.select('span[property="blog-post-categories"] span[property="articleSection"]')
+    Categories = postHtml.select('span[property="articleSection"]')
     postContent = postHtml.select('section[property="articleBody"]')
     tagArray = []
+    authorArray = []
     for tag in Categories:
-        tagArray.append(tag[0].text)
+        tagArray.append(tag.text)
+    for auth in Authors:
+        authorArray.append(auth.text)
     postJson = {}
     postJson["url"] = post
-    postJson["author"] = Author[0].text
+    postJson["title"] = Title[0].text
+    postJson["authors"] = authorArray
     postJson["date"] = DatePublished[0].text
     postJson["tags"] = tagArray
     postJson["post"] = postContent[0].text
+    outputfile = open(Title[0].text.replace("/", "_") + '.html','w')
+    json.dump(postJson,outputfile)
+    outputfile.close()
     output["posts"].append(postJson)
 
-print(output)
+
 print("Processing Completed!")

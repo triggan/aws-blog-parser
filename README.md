@@ -70,3 +70,7 @@ The script will provide output in the following format via STDOUT.  You can pipe
 ## License
 
 This project is licensed under the MIT License - see the LICENSE.md file for details
+
+## Acknowledgements
+
+- This blog post helped tremendously while I was developing this script: https://realpython.com/python-web-scraping-practical-introduction/
