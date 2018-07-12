@@ -44,6 +44,7 @@ The script will provide output in the following format via STDOUT.  You can pipe
     posts: [
         {
             url: <blog post url>,
+            title: <blog post title>,
             authors: [
                 <blog author 1>,
                 <blog author 2>,
