@@ -28,16 +28,25 @@ $ cd aws-blog-parser
 To run the script, use the following syntax:
 
 ```
-$ python aws-blog-parser.py <site_URL>
+usage: aws-blog-parser.py [-h] [-f] blogurl
+
+Extract contents of an AWS blog. As of July 12th, 2018.
+
+positional arguments:
+  blogurl     URL of AWS blog. Ex: http://aws.amazon.com/blogs/database/
+
+optional arguments:
+  -h, --help  show this help message and exit
+  -f          Output each blog post to a separate .json file.
 ```
 Example:
 ```
-$ python aws-blog-parser.py https://aws.amazon.com/blogs/architecture/
+$ python aws-blog-parser.py -f https://aws.amazon.com/blogs/architecture/
 ```
 
 ### Script Output
 
-The script will provide output in the following format via STDOUT.  You can pipe the output of this script to a file to use elsewhere.
+If the -f flag is not provided, the script will provide output in the following format via STDOUT.  
 
 ```
 {
@@ -63,6 +72,7 @@ The script will provide output in the following format via STDOUT.  You can pipe
     ]
 }
 ```
+If the -f flag is provided, the parsed output of each blog article will be written to separate .json files per blog post.
 
 ## Authors
 
